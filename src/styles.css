@@ -349,7 +349,7 @@ body {
    MODALS (FIXED)
 ------------------------------------------------------------ */
 .modal {
-    display: none !important;
+    display: none;
     position: fixed;
     inset: 0;
     z-index: 2000;
@@ -454,7 +454,6 @@ body {
 .nebula {
     filter: blur(30px);
     opacity: 0.45;
-
 }
 .stardust {
     filter: blur(2px);
@@ -567,11 +566,17 @@ body {
     outline: none;
 
     /* УБИРАЕМ жёсткий padding-inline */
-    padding: 0 16px 0 0px !important;  /* слева место под иконку, справа — свободно */
+    padding: 0 16px 0 0px !important; /* слева место под иконку, справа — свободно */
     box-sizing: border-box;
 }
+
+.node-input {
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
 .input-field {
-    padding-left: 16px!important;
+    padding-left: 16px !important;
 }
 
 .input::placeholder {
@@ -596,7 +601,7 @@ body {
     position: absolute;
     background: linear-gradient(90deg, transparent, #05071b 75%);
     top: 13px;
-    left: 54px;           /* точно под иконкой */
+    left: 54px; /* точно под иконкой */
     z-index: 5;
     transition: opacity 0.3s ease;
 }
@@ -707,87 +712,46 @@ body {
         font-size: 17px;
     }
 }
-}
-/* -----------------------------------------------------------
-   FIX: только левая (input) точка не должна закрывать текст
-   (сохраняем старый крутой вид, но делаем её "сквозь ноду")
------------------------------------------------------------- */
-.node-connection-point.input {
-    /* Делаем фон прозрачным ТОЛЬКО у левой точки */
-    background: transparent !important;
 
-    /* Оставляем красивую обводку и свечение */
-    border: 3px solid rgba(110, 140, 255, 0.35) !important;
-    box-shadow:
-        0 0 10px rgba(110, 140, 255, 0.4),
-        inset 0 0 8px rgba(110, 140, 255, 0.15);
-
-    /* Критически важно — ставим ниже текста ноды */
-    z-index: 5 !important;
+.form-group {
+    margin-bottom: 20px;
 }
 
-.node-connection-point.input:hover {
-    border-color: var(--accent3) !important;
-    box-shadow:
-        0 0 14px rgba(126, 224, 255, 0.7),
-        inset 0 0 10px rgba(126, 224, 255, 0.25);
-    transform: scale(1.25);
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--accent1); /* Use theme accent color */
 }
 
-/* Правая (output) точка остаётся как была — с тёмным фоном (красиво!) */
-.node-connection-point.output {
-    background: #151a35 !important;
-    z-index: 15; /* выше ноды — как и было */
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+
+    /* Style based on .help-input from new theme */
+    border-radius: 8px;
+    background: rgba(10, 14, 32, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #eaf2ff;
+
+    font-size: 15px;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
 }
 
-/* При активном соединении — обе точки яркие */
-.node-connection-point.connecting {
-    background: rgba(46, 204, 113, 0.3) !important;
-    border-color: #2ecc71 !important;
-    box-shadow: 0 0 16px rgba(46, 204, 113, 0.8) !important;
-}
-/* -----------------------------------------------------------
-   PERFECT FIX: левая точка подключения (input) —
-   маленькая, красивая, НЕ перекрывает текст
------------------------------------------------------------- */
-.node-connection-point.input {
-    /* Делаем её маленькой и аккуратной */
-    width: 13px !important;
-    height: 13px !important;
-    left: -10px !important;           /* чуть ближе к ноде */
-    top: 50% !important;
-    transform: translateY(-50%);
-
-    /* Полностью прозрачный фон + только обводка */
-    background: transparent !important;
-    border: 2.5px solid rgba(110, 140, 255, 0.5) !important;
-
-    /* Лёгкое внутреннее свечение + внешний glow */
-    box-shadow:
-        0 0 8px rgba(110, 140, 255, 0.4),
-        inset 0 0 6px rgba(110, 140, 255, 0.2);
-
-    /* Самое важное — ниже текста */
-    z-index: 8 !important;
-
-    transition: all 0.2s ease;
+/* Add a focus glow effect */
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent3); /* Use bright accent for focus */
+    box-shadow: 0 0 10px rgba(126, 224, 255, 0.3);
 }
 
-/* Hover — становится ярче и больше */
-.node-connection-point.input:hover {
-    border-color: var(--accent3) !important;
-    box-shadow:
-        0 0 14px rgba(126, 224, 255, 0.8),
-        inset 0 0 8px rgba(126, 224, 255, 0.4);
-    transform: translateY(-50%) scale(1.4);
-}
-
-/* Когда начинаем тянуть линию — зелёная пульсация */
-.node-connection-point.input.connecting {
-    border-color: #2ecc71 !important;
-    background: rgba(46, 204, 113, 0.25) !important;
-    box-shadow:
-        0 0 16px rgba(46, 204, 113, 0.8),
-        inset 0 0 10px rgba(46, 204, 113, 0.3) !important;
-    animation: pulse 1.2s infinite;
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+    font-family: inherit; /* Ensure it uses the app's font */
 }

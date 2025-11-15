@@ -29,7 +29,7 @@ function createNode(x, y, title = "New Node", body = "") {
   );
 
   var inP = document.createElement("div");
-  inP.className = "node-connection-point input";
+  inP.className = "node-connection-point node-input";
   inP.dataset.nodeId = nodeId;
   inP.dataset.type = "input";
 
