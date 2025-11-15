@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Flowchart AI</title>
+        <link rel="stylesheet" href="/src/styles.css" />
+        <!-- Favicon fix -->
+        <link rel="icon" href="data:," />
+    </head>
+    <body>
+        <!-- Canvas Container -->
+        <div id="canvas-container">
+            <svg id="flowchart-canvas"></svg>
+            <div id="content"></div>
+        </div>
+
+        <!-- Help Text + Settings -->
+        <div class="help-text">
+            <strong>Flowchart AI</strong><br />
+            • Enter a prompt below to start a new chain.<br />
+            • Select a node, then send a message to continue the flow.<br />
+            • Rewiring nodes updates context.<br />
+            • Drag background to pan.<br /><br />
+            • Double-click node to zoom into it.<br /><br />
+
+            <strong>Put your API key here:</strong>
+            <i
+                >from
+                <a href="https://aistudio.google.com/api-keys" target="_blank"
+                    >Google AI Studio</a
+                ></i
+            >
+
+            <label
+                for="ollama-base-url-input"
+                style="
+                    font-size: 12px;
+                    margin-top: 8px;
+                    display: block;
+                    color: #333;
+                "
+                >Ollama Base URL:</label
+            >
+            <input
+                type="text"
+                id="ollama-base-url-input"
+                placeholder="http://localhost:11434/v1"
+                style="
+                    width: 100%;
+                    padding: 6px 8px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    font-size: 13px;
+                    margin-top: 4px;
+                "
+            />
+
+            <!-- Model Selector -->
+            <div style="margin-top: 8px">
+                <label
+                    for="model-select"
+                    style="font-size: 13px; display: block; margin-bottom: 4px"
+                >
+                    <strong>Model:</strong>
+                </label>
+                <label
+                    for="model-input"
+                    style="
+                        font-size: 12px;
+                        margin-top: 8px;
+                        display: block;
+                        color: #333;
+                    "
+                    >Ollama Model:</label
+                >
+                <input
+                    type="text"
+                    id="model-input"
+                    placeholder="e.g., llama3, llava"
+                    style="
+                        width: 100%;
+                        padding: 6px 8px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        font-size: 13px;
+                        margin-top: 4px;
+                    "
+                />
+            </div>
+
+            <i style="font-size: 11px; display: block; margin-top: 8px">
+                Made by Ivan Bussalayev @i.bussalayev for questions.
+            </i>
+
+            <!-- Save / Load Buttons -->
+            <div style="margin-top: 8px; display: flex; gap: 8px">
+                <button
+                    id="save-graph-btn"
+                    class="btn"
+                    style="font-size: 13px; padding: 6px 12px"
+                >
+                    Save graph
+                </button>
+                <button
+                    id="load-graph-btn"
+                    class="btn"
+                    style="font-size: 13px; padding: 6px 12px"
+                >
+                    Load graph
+                </button>
+                <input
+                    type="file"
+                    id="load-file-input"
+                    accept=".json"
+                    style="display: none"
+                />
+            </div>
+        </div>
+
+        <!-- Chat Input -->
+        <div id="chat-container">
+            <input
+                type="text"
+                id="chat-input"
+                placeholder="Type your message to the AI..."
+            />
+            <input type="file" id="file-input" />
+            <button id="send-btn">Send</button>
+        </div>
+
+        <!-- Node Edit Modal -->
+        <div id="node-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit Node</h3>
+                    <button class="close-btn">x</button>
+                </div>
+                <div class="form-group">
+                    <label for="node-title">Title</label>
+                    <input
+                        type="text"
+                        id="node-title"
+                        placeholder="Node title..."
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="node-body">Content</label>
+                    <textarea
+                        id="node-body"
+                        placeholder="Node content..."
+                    ></textarea>
+                </div>
+                <div style="text-align: right; margin-top: 20px">
+                    <button id="cancel-node-btn" class="btn btn-danger">
+                        Cancel
+                    </button>
+                    <button id="save-node-btn" class="btn">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Zoom Modal -->
+        <div id="zoom-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="zoom-title" class="modal-title"></h3>
+                    <button class="close-btn">x</button>
+                </div>
+                <div
+                    id="zoom-body"
+                    style="padding: 20px; line-height: 1.6; font-size: 15px"
+                ></div>
+            </div>
+        </div>
+
+        <!-- App Entry Point -->
+        <script type="module" src="/src/app.js"></script>
+    </body>
+</html>
