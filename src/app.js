@@ -133,10 +133,44 @@ async function handleSendChat() {
   var prompt = chatInput.value.trim();
   var file = fileInput.files[0];
 
+  // --- ВОТ ИЗМЕНЕНИЕ ---
+  // Если и промпт, и файл пустые, создаем пустой узел
   if (!prompt && !file) {
-    alert("Please enter a prompt or attach a file.");
-    return;
+    console.log("Empty input, creating a new empty node.");
+
+    var rect = canvasContainer.getBoundingClientRect();
+    var x,
+      y,
+      parentId = null;
+
+    if (app.selectedNode) {
+      parentId = app.selectedNode;
+      var parentNode = app.nodes.find(function (n) {
+        return n.id === parentId;
+      });
+      if (parentNode) {
+        x = parentNode.x + 300; // Размещаем справа от родителя
+        y = parentNode.y;
+      } else {
+        // На случай, если узел не найден (не должно случиться)
+        x = -app.panX + rect.width / 2 - 120;
+        y = -app.panY + rect.height / 2 - 50;
+      }
+    } else {
+      // Нет выбранного узла, размещаем по центру
+      x = -app.panX + rect.width / 2 - 120;
+      y = -app.panY + rect.height / 2 - 50;
+    }
+
+    var newNode = createNode(x, y, "Empty Node", ""); // Создаем узел
+
+    if (parentId) {
+      createConnection(parentId, newNode.id); // Соединяем
+    }
+
+    return; // <-- Важно: выходим из функции, чтобы не вызывать API
   }
+  // --- КОНЕЦ ИЗМЕНЕНИЯ ---
 
   // ИЗМЕНЕНА ПРОВЕРКА
   if (!baseUrlInput.value.trim()) {

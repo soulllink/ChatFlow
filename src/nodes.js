@@ -168,13 +168,13 @@ function createConnection(startId, endId) {
 
 // ────── DELETE HELPERS ────────────────────────────────────────────────
 function deleteConnection(id) {
-  // Эта функция теперь УДАЛЯЕТ ТОЛЬКО ИЗ СОСТОЯНИЯ.
   app.connections = app.connections.filter(function (c) {
     return c.id !== id;
   });
-  // Мы больше не пытаемся удалить DOM-элемент отсюда,
-  // так как redrawConnections() позаботится об этом.
-  // document.getElementById(id)?.remove(); // <-- ЭТА ЛИНИЯ БЫЛА ИСТОЧНИКОМ ОШИБКИ
+
+  // 2. (ВОТ ИСПРАВЛЕНИЕ) Принудительно перерисовываем все линии
+  // Эта функция уже импортирована вверху вашего файла
+  redrawConnections();
 }
 
 function deleteNode(id) {
