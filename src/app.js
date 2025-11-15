@@ -404,8 +404,8 @@ document.addEventListener("mousemove", function (e) {
     // Логика панорамирования
     app.panX = e.clientX - app.panStartX;
     app.panY = e.clientY - app.panStartY;
-    content.style.transform =
-      "translate(" + app.panX + "px, " + app.panY + "px)";
+    content.style.setProperty("--panX", app.panX + "px");
+    content.style.setProperty("--panY", app.panY + "px");
   }
 });
 

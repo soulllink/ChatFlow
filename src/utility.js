@@ -91,50 +91,65 @@ function getChatContext(id) {
 }
 
 function redrawConnections() {
+  // Удаляем старые
   document
     .querySelectorAll(".connection-line, .temp-connection-line")
-    .forEach(function (el) {
-      el.remove();
+    .forEach((el) => el.remove());
+
+  app.connections.forEach((c) => {
+    const startEl = document.getElementById(c.start);
+    const endEl = document.getElementById(c.end);
+    if (!startEl || !endEl) return;
+
+    // Важно: используем offsetLeft/offsetTop — они уже учитывают panX/panY!
+    const startX = startEl.offsetLeft + startEl.offsetWidth;
+    const startY = startEl.offsetTop + startEl.offsetHeight / 2;
+    const endX = endEl.offsetLeft;
+    const endY = endEl.offsetTop + endEl.offsetHeight / 2;
+
+    const dx = endX - startX;
+    const controlOffset = Math.abs(dx) * 0.5;
+
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.id = c.id;
+    path.classList.add("connection-line");
+    path.setAttribute(
+      "d",
+      `M ${startX} ${startY}
+       C ${startX + controlOffset} ${startY},
+         ${endX - controlOffset} ${endY},
+         ${endX} ${endY}`,
+    );
+
+    // Делаем линию легко кликабельной
+    path.style.stroke = "var(--connection-color, #4d6dff)";
+    path.style.strokeWidth = "4";
+    path.style.fill = "none";
+    path.style.pointerEvents = "stroke";
+    path.style.cursor = "pointer";
+
+    // Невидимая толстая копия только для клика
+    const hitPath = path.cloneNode();
+    hitPath.style.stroke = "transparent";
+    hitPath.style.strokeWidth = "20";
+    hitPath.addEventListener("click", (e) => {
+      e.stopPropagation();
+      app.connections = app.connections.filter((conn) => conn.id !== c.id);
+      redrawConnections(); // или просто ничего — следующее действие само перерисует
     });
 
-  app.connections.forEach(function (c) {
-    var s = document.getElementById(c.start);
-    var e = document.getElementById(c.end);
-    if (s && e) {
-      var sr = s.getBoundingClientRect();
-      var er = e.getBoundingClientRect();
-      var cr = document
-        .getElementById("flowchart-canvas")
-        .getBoundingClientRect();
-      var sx = sr.right - cr.left;
-      var sy = sr.top + sr.height / 2 - cr.top;
-      var ex = er.left - cr.left;
-      var ey = er.top + er.height / 2 - cr.top;
-      var dx = ex - sx;
-      var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      path.id = c.id;
-      path.setAttribute("class", "connection-line");
-      path.setAttribute(
-        "d",
-        "M " +
-          sx +
-          " " +
-          sy +
-          " C " +
-          (sx + Math.abs(dx) * 0.5) +
-          " " +
-          sy +
-          ", " +
-          (ex - Math.abs(dx) * 0.5) +
-          " " +
-          ey +
-          ", " +
-          ex +
-          " " +
-          ey,
+    const svg = document.getElementById("flowchart-canvas");
+    svg.appendChild(hitPath);
+    svg.appendChild(path);
+
+    // Hover-эффект
+    [path, hitPath].forEach((p) => {
+      p.addEventListener("mouseenter", () => (path.style.stroke = "#ff4444"));
+      p.addEventListener(
+        "mouseleave",
+        () => (path.style.stroke = "var(--connection-color, #666)"),
       );
-      document.getElementById("flowchart-canvas").appendChild(path);
-    }
+    });
   });
 }
 

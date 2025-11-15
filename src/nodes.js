@@ -124,27 +124,33 @@ function drawConnection(c) {
   path.setAttribute("class", "connection-line");
   path.setAttribute(
     "d",
-    "M " +
-      sx +
-      " " +
-      sy +
-      " C " +
-      cx1 +
-      " " +
-      sy +
-      ", " +
-      cx2 +
-      " " +
-      ey +
-      ", " +
-      ex +
-      " " +
-      ey,
+    `M ${sx} ${sy} C ${cx1} ${sy}, ${cx2} ${ey}, ${ex} ${ey}`,
   );
-  path.addEventListener("click", function (e) {
+
+  // THIS IS THE KEY FIX:
+  path.style.pointerEvents = "stroke"; // Only the stroke is clickable
+  path.style.stroke = "var(--connection-color, #4d6dff)"; // ensure visible
+  path.style.strokeWidth = "6"; // temporarily thicker for testing
+  path.style.cursor = "pointer";
+
+  // Optional: add a transparent thicker stroke just for hit area
+  var hitArea = path.cloneNode();
+  hitArea.setAttribute("stroke-width", "20");
+  hitArea.setAttribute("stroke", "transparent");
+  hitArea.setAttribute("fill", "none");
+  hitArea.style.pointerEvents = "stroke";
+  hitArea.style.cursor = "pointer";
+
+  // Same click handler
+  const deleteHandler = (e) => {
     e.stopPropagation();
     deleteConnection(c.id);
-  });
+  };
+  path.addEventListener("click", deleteHandler);
+  hitArea.addEventListener("click", deleteHandler);
+
+  // Insert hitArea first (behind), then real path
+  document.getElementById("flowchart-canvas").appendChild(hitArea);
   document.getElementById("flowchart-canvas").appendChild(path);
 }
 

@@ -159,9 +159,10 @@ body {
 }
 
 #content {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative; /* Обязательно! */
+    transform: translate(var(--panX, 0px), var(--panY, 0px));
+    width: 3000px;
+    height: 3000px;
 }
 
 /* -----------------------------------------------------------
@@ -763,19 +764,16 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-
-    /* Он должен быть ВЫШЕ, чем #content (у которого z-index: 1 или 0) */
-    z-index: 10;
-
-    /* 2. Делаем ВЕСЬ КАНВАС "прозрачным" для мыши */
-    pointer-events: none;
+    pointer-events: none; /* Чтобы не перехватывал клики по нодам */
+    overflow: visible;
 }
-
 /* 3. "Включаем" мышь ОБРАТНО только для самих линий */
 .connection-line {
+    stroke: #4d6dff;
     /* Это "оживляет" линии, чтобы их можно было нажать */
-    pointer-events: auto;
-
+    pointer-events: stroke;
+    stroke-dasharray: 8 8;
+    animation: dash 1.5s linear infinite;
     /* 4. Делаем их ОЧЕНЬ толстыми, чтобы было легче попасть */
     stroke-width: 3px; /* <-- Увеличьте, если все еще трудно */
     fill: none;
@@ -784,4 +782,10 @@ body {
 /* 5. Делаем наведение очевидным */
 .connection-line:hover {
     stroke-width: 4px;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -16;
+    }
 }
