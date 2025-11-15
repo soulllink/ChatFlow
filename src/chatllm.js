@@ -5,7 +5,7 @@ import OpenAI from "openai";
 
 // ────── ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ─────────────────────────────────────────
 let OLLAMA_BASE_URL = "http://localhost:11434/v1";
-let CURRENT_MODEL = "llama3"; // Установите модель по умолчанию
+let CURRENT_MODEL = "granite4:tiny-h"; // Установите модель по умолчанию
 let ollamaClient = null;
 
 // ────── ИНИЦИАЛИЗАЦИЯ КЛИЕНТА ─────────────────────────────────────────

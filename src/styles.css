@@ -1,131 +1,312 @@
+/* -----------------------------------------------------------
+   GLOBAL RESET + BASE COLORS
+------------------------------------------------------------ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+:root {
+    --bg-deep: #04061a;
+    --accent1: #a9c7ff;
+    --accent2: #6e8cff;
+    --accent3: #7ee0ff;
+    --text-muted: #c8d3f6;
+
+    --glass-bg: rgba(8, 12, 28, 0.55);
+    --glass-border: rgba(169, 199, 255, 0.08);
+    --glass-blur: 8px;
+}
+
+/* -----------------------------------------------------------
+   GLOBAL BACKGROUND – STARFIELD ONLY
+------------------------------------------------------------ */
 body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #abc5de;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 304 304' width='304' height='304'%3E%3Cpath fill='%23f9f9f9' fill-opacity='0.4' d='M44.1 224a5 5 0 1 1 0 2H0v-2h44.1zm160 48a5 5 0 1 1 0 2H82v-2h122.1zm57.8-46a5 5 0 1 1 0-2H304v2h-42.1zm0 16a5 5 0 1 1 0-2H304v2h-42.1zm6.2-114a5 5 0 1 1 0 2h-86.2a5 5 0 1 1 0-2h86.2zm-256-48a5 5 0 1 1 0 2H0v-2h12.1zm185.8 34a5 5 0 1 1 0-2h86.2a5 5 0 1 1 0 2h-86.2zM258 12.1a5 5 0 1 1-2 0V0h2v12.1zm-64 208a5 5 0 1 1-2 0v-54.2a5 5 0 1 1 2 0v54.2zm48-198.2V80h62v2h-64V21.9a5 5 0 1 1 2 0zm16 16V64h46v2h-48V37.9a5 5 0 1 1 2 0zm-128 96V208h16v12.1a5 5 0 1 1-2 0V210h-16v-76.1a5 5 0 1 1 2 0zm-5.9-21.9a5 5 0 1 1 0 2H114v48H85.9a5 5 0 1 1 0-2H112v-48h12.1zm-6.2 130a5 5 0 1 1 0-2H176v-74.1a5 5 0 1 1 2 0V242h-60.1zm-16-64a5 5 0 1 1 0-2H114v48h10.1a5 5 0 1 1 0 2H112v-48h-10.1zM66 284.1a5 5 0 1 1-2 0V274H50v30h-2v-32h18v12.1zM236.1 176a5 5 0 1 1 0 2H226v94h48v32h-2v-30h-48v-98h12.1zm25.8-30a5 5 0 1 1 0-2H274v44.1a5 5 0 1 1-2 0V146h-10.1zm-64 96a5 5 0 1 1 0-2H208v-80h16v-14h-42.1a5 5 0 1 1 0-2H226v18h-16v80h-12.1zm86.2-210a5 5 0 1 1 0 2H272V0h2v32h10.1zM98 101.9V146H53.9a5 5 0 1 1 0-2H96v-42.1a5 5 0 1 1 2 0zM53.9 34a5 5 0 1 1 0-2H80V0h2v34H53.9zm60.1 3.9V66H82v64H69.9a5 5 0 1 1 0-2H80V64h32V37.9a5 5 0 1 1 2 0zM101.9 82a5 5 0 1 1 0-2H128V37.9a5 5 0 1 1 2 0V82h-28.1zm16-64a5 5 0 1 1 0-2H146v44.1a5 5 0 1 1-2 0V18h-26.1zm102.2 270a5 5 0 1 1 0 2H98v14h-2v-16h124.1zM242 149.9V160h16v34h-16v62h48v48h-2v-46h-48v-66h16v-30h-16v-12.1a5 5 0 1 1 2 0zM53.9 18a5 5 0 1 1 0-2H64V2H48V0h18v18H53.9zm112 32a5 5 0 1 1 0-2H192V0h50v2h-48v48h-28.1zm-48-48a5 5 0 0 1-9.8-2h2.07a3 3 0 1 0 5.66 0H178v34h-18V21.9a5 5 0 1 1 2 0V32h14V2h-58.1zm0 96a5 5 0 1 1 0-2H137l32-32h39V21.9a5 5 0 1 1 2 0V66h-40.17l-32 32H117.9zm28.1 90.1a5 5 0 1 1-2 0v-76.51L175.59 80H224V21.9a5 5 0 1 1 2 0V82h-49.59L146 112.41v75.69zm16 32a5 5 0 1 1-2 0v-99.51L184.59 96H300.1a5 5 0 0 1 3.9-3.9v2.07a3 3 0 0 0 0 5.66v2.07a5 5 0 0 1-3.9-3.9H185.41L162 121.41v98.69zm-144-64a5 5 0 1 1-2 0v-3.51l48-48V48h32V0h2v50H66v55.41l-48 48v2.69zM50 53.9v43.51l-48 48V208h26.1a5 5 0 1 1 0 2H0v-65.41l48-48V53.9a5 5 0 1 1 2 0zm-16 16V89.41l-34 34v-2.82l32-32V69.9a5 5 0 1 1 2 0zM12.1 32a5 5 0 1 1 0 2H9.41L0 43.41V40.6L8.59 32h3.51zm265.8 18a5 5 0 1 1 0-2h18.69l7.41-7.41v2.82L297.41 50H277.9zm-16 160a5 5 0 1 1 0-2H288v-71.41l16-16v2.82l-14 14V210h-28.1zm-208 32a5 5 0 1 1 0-2H64v-22.59L40.59 194H21.9a5 5 0 1 1 0-2H41.41L66 216.59V242H53.9zm150.2 14a5 5 0 1 1 0 2H96v-56.6L56.6 162H37.9a5 5 0 1 1 0-2h19.5L98 200.6V256h106.1zm-150.2 2a5 5 0 1 1 0-2H80v-46.59L48.59 178H21.9a5 5 0 1 1 0-2H49.41L82 208.59V258H53.9zM34 39.8v1.61L9.41 66H0v-2h8.59L32 40.59V0h2v39.8zM2 300.1a5 5 0 0 1 3.9 3.9H3.83A3 3 0 0 0 0 302.17V256h18v48h-2v-46H2v42.1zM34 241v63h-2v-62H0v-2h34v1zM17 18H0v-2h16V0h2v18h-1zm273-2h14v2h-16V0h2v16zm-32 273v15h-2v-14h-14v14h-2v-16h18v1zM0 92.1A5.02 5.02 0 0 1 6 97a5 5 0 0 1-6 4.9v-2.07a3 3 0 1 0 0-5.66V92.1zM80 272h2v32h-2v-32zm37.9 32h-2.07a3 3 0 0 0-5.66 0h-2.07a5 5 0 0 1 9.8 0zM5.9 0A5.02 5.02 0 0 1 0 5.9V3.83A3 3 0 0 0 3.83 0H5.9zm294.2 0h2.07A3 3 0 0 0 304 3.83V5.9a5 5 0 0 1-3.9-5.9zm3.9 300.1v2.07a3 3 0 0 0-1.83 1.83h-2.07a5 5 0 0 1 3.9-3.9zM97 100a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-48 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 96a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-144a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM49 36a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM33 68a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 240a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm80-176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm112 176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 180a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 84a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'%3E%3C/path%3E%3C/svg%3E");
-    color: #333;
+    background: #030414;
+    color: var(--text-muted);
+    font-family: "Inter", sans-serif;
     overflow: hidden;
-    height: 100vh;
-    position: relative;
 }
 
-#canvas-container {
-    position: relative;
+/* the small star grid, subtle */
+.galaxy {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(#ffffff 1px, transparent 1px),
+        radial-gradient(#ffffff 1px, transparent 1px);
+
+    background-size: 40px 40px;
+    background-position:
+        0 0,
+        20px 20px;
+    opacity: 0.18;
+
+    animation: twinkle 6s ease-in-out infinite;
+    z-index: 0;
+}
+
+@keyframes twinkle {
+    0%,
+    100% {
+        opacity: 0.12;
+    }
+    50% {
+        opacity: 0.22;
+    }
+}
+
+/* -----------------------------------------------------------
+   HELP PANEL
+------------------------------------------------------------ */
+.help-text {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+
+    width: 340px;
+    padding: 16px;
+
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(var(--glass-blur));
+    border-radius: 12px;
+
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.45;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    z-index: 50;
+}
+
+.help-label {
+    display: block;
+    margin-top: 10px;
+    color: var(--accent1);
+    font-size: 12px;
+}
+
+.help-input {
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    margin-top: 6px;
+    padding: 8px 10px;
+
+    border-radius: 8px;
+    background: rgba(10, 14, 32, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #eaf2ff;
 }
 
-#content {
+.save-load {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.made-by {
+    display: block;
+    margin-top: 10px;
+    font-size: 11px;
+    opacity: 0.6;
+}
+
+/* -----------------------------------------------------------
+   BUTTONS
+------------------------------------------------------------ */
+.btn {
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+
+    background: linear-gradient(180deg, var(--accent2), var(--accent1));
+    color: #05071b;
+    font-weight: 700;
+
+    box-shadow: 0 6px 20px rgba(80, 120, 255, 0.15);
+    transition: transform 0.15s;
+}
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: linear-gradient(180deg, #ef4444, #e63b3b);
+    color: white;
+}
+
+/* -----------------------------------------------------------
+   CANVAS AREA
+------------------------------------------------------------ */
+#canvas-container {
     position: absolute;
-    top: 0;
-    left: 0;
-    will-change: transform;
-    transform: translate(0px, 0px);
+    inset: 0;
+    z-index: 2;
 }
 
 #flowchart-canvas {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100000px; /* Large for "infinite" canvas */
+    width: 100000px;
     height: 100000px;
-    pointer-events: none; /* Allow panning through empty SVG areas */
+    pointer-events: none;
+    z-index: 1;
 }
 
+#content {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* -----------------------------------------------------------
+   NODES — STYLE C (READABLE NEON)
+------------------------------------------------------------ */
 .node {
     position: absolute;
-    width: 240px;
-    min-height: 100px;
-    background: white;
+    width: 260px;
+    min-height: 90px;
+
+    padding: 18px;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    cursor: move;
+
+    background: linear-gradient(180deg, #0a1028e0, #050716e0);
+    border: 1px solid rgba(110, 140, 255, 0.15);
+    color: #eef2ff;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+
     transition:
-        transform 0.2s,
-        box-shadow 0.2s;
+        transform 0.18s,
+        box-shadow 0.18s,
+        border-color 0.18s;
     z-index: 10;
     user-select: none;
+    pointer-events: auto; /* важно для кнопок внутри */
+}
+
+.node:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    border-radius: 12px 0 0 12px;
+    background: linear-gradient(180deg, var(--accent2), var(--accent1));
+    opacity: 0.8;
 }
 
 .node:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.72);
+    border-color: rgba(110, 140, 255, 0.35);
 }
 
-.node.dragging {
-    opacity: 0.8;
-    z-index: 1000;
+.node.selected {
+    border-color: var(--accent3);
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.85);
+    z-index: 20;
 }
 
+/* node content */
 .node-title {
-    font-weight: bold;
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #2c3e50;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent1);
 }
-
 .node-body {
+    margin-top: 8px;
     font-size: 14px;
-    color: #555;
+    color: #dce6ff;
     line-height: 1.5;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
 }
 
+/* КНОПКИ ВНУТРИ НОД — R и X */
+.node .resend-btn,
+.node .delete-btn {
+    position: absolute;
+    top: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 30;
+    opacity: 0.75;
+    transition: all 0.2s;
+    pointer-events: auto;
+}
+
+.node .resend-btn {
+    right: 40px;
+    background: rgba(46, 204, 113, 0.25);
+    color: #2ecc71;
+    border: 1px solid rgba(46, 204, 113, 0.4);
+}
+.node .resend-btn:hover {
+    background: rgba(46, 204, 113, 0.5);
+    opacity: 1;
+    transform: scale(1.12);
+}
+
+.node .delete-btn {
+    right: 8px;
+    background: rgba(239, 68, 68, 0.25);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+}
+.node .delete-btn:hover {
+    background: rgba(239, 68, 68, 0.5);
+    opacity: 1;
+    transform: scale(1.12);
+}
+
+/* connection points */
 .node-connection-point {
     position: absolute;
     width: 16px;
     height: 16px;
-    background: #667eea;
-    border: 3px solid white;
+
     border-radius: 50%;
+    background: #151a35;
+    border: 3px solid rgba(255, 255, 255, 0.07);
+
     cursor: crosshair;
-    z-index: 11;
-    transition: all 0.3s;
-}
-
-.node-connection-point.input {
-    left: -8px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.node-connection-point.output {
-    right: -8px;
-    top: 50%;
-    transform: translateY(-50%);
+    transition:
+        transform 0.15s,
+        border 0.15s;
+    z-index: 15;
 }
 
 .node-connection-point:hover {
-    transform: translateY(-50%) scale(1.3);
-    box-shadow: 0 0 10px rgba(102, 126, 234, 0.6);
+    transform: scale(1.2);
+    border-color: var(--accent3);
 }
 
-.node-connection-point.input:hover {
-    transform: translateY(-50%) scale(1.3);
+.node-connection-point.input {
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
 }
-
-.node-connection-point.output:hover {
-    transform: translateY(-50%) scale(1.3);
+.node-connection-point.output {
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .node-connection-point.connecting {
-    background: #2ecc71;
+    background: linear-gradient(180deg, #2ecc71, #1ca85b);
     animation: pulse 1s infinite;
 }
-
 @keyframes pulse {
     0% {
         box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
@@ -138,170 +319,17 @@ body {
     }
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(5px);
-}
-
-.modal-content {
-    background: white;
-    border-radius: 12px;
-    padding: 30px;
-    width: 90%;
-    max-width: 500px;
-    max-height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    animation: slideIn 0.3s ease-out;
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 15px;
-}
-
-.modal-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #2c3e50;
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 28px;
-    cursor: pointer;
-    color: #95a5a6;
-    transition: color 0.2s;
-}
-
-.close-btn:hover {
-    color: #7f8c8d;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #2c3e50;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: border-color 0.2s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #667eea;
-}
-
-.form-group textarea {
-    min-height: 150px;
-    resize: vertical;
-    font-family: inherit;
-}
-
-.btn {
-    padding: 12px 24px;
-    background: #667eea;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    transition: all 0.2s;
-    margin-right: 10px;
-}
-
-.btn:hover {
-    background: #5a67d8;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-}
-
-.btn-danger {
-    background: #e74c3c;
-}
-
-.btn-danger:hover {
-    background: #c0392b;
-    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
-}
-
-.add-node-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #667eea;
-    color: white;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
-    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-    transition: all 0.3s;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.add-node-btn:hover {
-    transform: scale(1.1) rotate(90deg);
-    background: #5a67d8;
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
-}
-
+/* -----------------------------------------------------------
+   CONNECTION LINES
+------------------------------------------------------------ */
 .connection-line {
-    stroke: #667eea;
+    stroke: var(--accent1);
     stroke-width: 3;
     fill: none;
-    pointer-events: stroke;
-    cursor: pointer;
-    transition: stroke-width 0.2s;
+    transition: stroke-width 0.12s;
 }
-
 .connection-line:hover {
     stroke-width: 5;
-    stroke: #e74c3c;
 }
 
 .temp-connection-line {
@@ -309,214 +337,457 @@ body {
     stroke-width: 3;
     fill: none;
     stroke-dasharray: 5, 5;
-    pointer-events: none;
     animation: dash 0.5s linear infinite;
 }
-
 @keyframes dash {
     to {
         stroke-dashoffset: -10;
     }
 }
 
-.help-text {
+/* -----------------------------------------------------------
+   MODALS (FIXED)
+------------------------------------------------------------ */
+.modal {
+    display: none !important;
     position: fixed;
-    top: 20px;
-    left: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 15px 20px;
-    border-radius: 8px;
-    font-size: 14px;
-    color: #555;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    z-index: 50;
+    inset: 0;
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
 }
 
-.help-text strong {
-    color: #667eea;
-}
-/* Add this to the bottom of styles.css */
+.modal-content {
+    width: 92%;
+    max-width: 620px;
 
+    background: linear-gradient(180deg, #0b112ae0, #07091ce0);
+    border: 1px solid rgba(110, 140, 255, 0.15);
+
+    padding: 20px;
+    border-radius: 14px;
+    color: #eaf3ff;
+
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+    animation: modal-pop 0.25s ease-out;
+}
+
+@keyframes modal-pop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+}
+
+.close-btn {
+    border: none;
+    background: transparent;
+    color: #a8b3ff;
+    font-size: 20px;
+    cursor: pointer;
+}
+.close-btn:hover {
+    color: var(--accent2);
+}
+
+/* -----------------------------------------------------------
+   CHAT BAR — FULLY FIXED COSMIC INPUT (Uiverse-style)
+------------------------------------------------------------ */
 #chat-container {
     position: fixed;
-    bottom: 0;
-    left: 0;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
-    padding: 15px 20px;
-    background: rgba(255, 255, 255, 0.95);
-    border-top: 1px solid #e0e0e0;
-    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+    max-width: 1280px;
     display: flex;
-    gap: 10px;
-    z-index: 1500;
-    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    padding: 14px;
+    z-index: 200;
 }
 
-#chat-input {
-    flex-grow: 1;
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.2s;
+/* Скрываем старые кнопки */
+#chat-container > #file-input,
+#chat-container > #send-btn {
+    display: none !important;
 }
 
-#chat-input:focus {
-    outline: none;
-    border-color: #667eea;
+#search-container {
+    position: relative;
+    width: 804px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
 }
 
-#send-btn {
-    padding: 12px 24px;
-    background: #667eea;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    transition: all 0.2s;
-}
-
-#send-btn:hover {
-    background: #5a67d8;
-    transform: translateY(-1px);
-}
-
-/* Update help-text position so it doesn't overlap the chat */
-.help-text {
-    /* ... (existing styles) ... */
-    top: 20px;
-    left: 20px;
-}
-
-/* Node selection style */
-.node.selected {
-    box-shadow:
-        0 0 0 4px #2ecc71,
-        0 10px 30px rgba(0, 0, 0, 0.2);
-    transform: translateY(-3px);
-}
-
-/* Hide the old add node button */
-.add-node-btn {
-    display: none;
-}
-/* API key field & buttons under help text */
-.help-text ~ input,
-.help-text ~ div {
-    margin-top: 8px;
-}
-.help-text ~ div button {
-    font-size: 13px;
-    padding: 6px 12px;
-}
-/* Resend button */
-/* Resend button - Blue "R" */
-.resend-btn {
+.nebula,
+.starfield,
+.stardust,
+.cosmic-ring {
     position: absolute;
-    top: 6px;
-    right: 6px;
-    width: 16px;
-    height: 16px;
-    background: #2563eb; /* Blue */
-    color: white;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.nebula {
+    filter: blur(30px);
+    opacity: 0.45;
+
+}
+.stardust {
+    filter: blur(2px);
+}
+.cosmic-ring {
+    filter: blur(0.5px);
+}
+
+.stardust::before,
+.cosmic-ring::before,
+.starfield::before,
+.nebula::before {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    transition: all 2s;
+}
+
+.stardust::before {
+    background-image: conic-gradient(
+        transparent 0%,
+        #4d6dff,
+        transparent 8%,
+        transparent 50%,
+        #6e8cff,
+        transparent 58%
+    );
+}
+.cosmic-ring::before {
+    background-image: conic-gradient(
+        #05071b,
+        #4d6dff 5%,
+        #05071b 14%,
+        #05071b 50%,
+        #6e8cff 60%,
+        #05071b 64%
+    );
+}
+.starfield::before {
+    background-image: conic-gradient(
+        transparent,
+        #1c2452,
+        transparent 10%,
+        transparent 50%,
+        #2a3875,
+        transparent 60%
+    );
+}
+.nebula::before {
+    width: 999px;
+    height: 999px;
+    background-image: conic-gradient(
+        #000,
+        #4d6dff 5%,
+        #000 38%,
+        #000 50%,
+        #6e8cff 60%,
+        #000 87%
+    );
+}
+
+#search-container:hover > .starfield::before {
+    transform: translate(-50%, -50%) rotate(-98deg);
+}
+#search-container:hover > .nebula::before {
+    transform: translate(-50%, -50%) rotate(-120deg);
+}
+#search-container:hover > .stardust::before {
+    transform: translate(-50%, -50%) rotate(-97deg);
+}
+#search-container:hover > .cosmic-ring::before {
+    transform: translate(-50%, -50%) rotate(-110deg);
+}
+
+#search-container:focus-within > .starfield::before {
+    transform: translate(-50%, -50%) rotate(442deg);
+    transition: 4s;
+}
+#search-container:focus-within > .nebula::before {
+    transform: translate(-50%, -50%) rotate(420deg);
+    transition: 4s;
+}
+#search-container:focus-within > .stardust::before {
+    transform: translate(-50%, -50%) rotate(443deg);
+    transition: 4s;
+}
+#search-container:focus-within > .cosmic-ring::before {
+    transform: translate(-50%, -50%) rotate(430deg);
+    transition: 4s;
+}
+
+/* -----------------------------------------------------------
+   FINAL FIX: правильное выравнивание инпута без конфликтов
+------------------------------------------------------------ */
+.input {
+    background-color: #05071b;
     border: none;
-    border-radius: 4px;
+    width: 800px;
+    height: 64px;
+    border-radius: 10px;
+    color: var(--accent1);
+    font-size: 18px;
+    z-index: 4;
+    outline: none;
+
+    /* УБИРАЕМ жёсткий padding-inline */
+    padding: 0 16px 0 0px !important;  /* слева место под иконку, справа — свободно */
+    box-sizing: border-box;
+}
+.input-field {
+    padding-left: 16px!important;
+}
+
+.input::placeholder {
+    color: var(--accent2);
+    opacity: 0.8;
+}
+
+/* Иконка поиска — теперь позиционируется независимо */
+#search-icon {
+    position: absolute;
+    left: 18px;
+    top: 16px;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Маска — корректируем под новое позиционирование */
+#input-mask {
+    pointer-events: none;
+    width: 90px;
+    height: 30px;
+    position: absolute;
+    background: linear-gradient(90deg, transparent, #05071b 75%);
+    top: 13px;
+    left: 54px;           /* точно под иконкой */
+    z-index: 5;
+    transition: opacity 0.3s ease;
+}
+#search-container:focus-within #input-mask {
+    opacity: 0;
+}
+
+/* Свечение слева — чуть сдвигаем */
+#cosmic-glow {
+    pointer-events: none;
+    width: 40px;
+    height: 30px;
+    position: absolute;
+    top: 13px;
+    left: 8px;
+    background: #4d6dff;
+    filter: blur(22px);
+    opacity: 0.8;
+    transition: opacity 2s;
+}
+#search-container:hover #cosmic-glow {
+    opacity: 0.3;
+}
+
+#wormhole-icon {
+    position: absolute;
+    top: 13px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #1c2452, #05071b, #2a3875);
+    border: 1px solid transparent;
     cursor: pointer;
-    font-size: 10px;
-    font-weight: bold;
-    line-height: 16px;
-    text-align: center;
-    transition: all 0.2s;
     z-index: 10;
+    transition: all 0.2s ease;
 }
-
-.resend-btn:hover {
-    background: #1d4ed8;
+#wormhole-icon:hover {
     transform: scale(1.1);
+    background: linear-gradient(180deg, #2a3875, #1c2452);
+    box-shadow: 0 0 20px rgba(109, 140, 255, 0.6);
 }
-
-.resend-btn:active {
+#wormhole-icon:active {
     transform: scale(0.95);
 }
-/*
-  Добавьте этот CSS-код в ваш главный файл стилей (style.css)
-*/
 
-.resend-btn,
-.delete-btn {
+.wormhole-border {
     position: absolute;
-    top: 4px;
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 20px;
-    text-align: center;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    color: white;
-    opacity: 0.5;
-    transition: opacity 0.2s;
+    top: 12px;
+    right: 15px;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    overflow: hidden;
+    pointer-events: none;
+}
+.wormhole-border::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    transform: translate(-50%, -50%) rotate(0deg);
+    background-image: conic-gradient(
+        transparent,
+        #4d6dff,
+        transparent 50%,
+        #6e8cff,
+        transparent
+    );
+    filter: brightness(1.35);
+    animation: rotate 4s linear infinite;
+}
+@keyframes rotate {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
-/* Расположение кнопки R */
-.resend-btn {
-    right: 28px; /* Сдвигаем, чтобы освободить место для X */
-    background: #3b82f6; /* Blue */
+#search-icon {
+    position: absolute;
+    left: 20px;
+    top: 16px;
+    z-index: 5;
+    pointer-events: none;
 }
 
-/* Расположение кнопки X */
-.delete-btn {
-    right: 4px;
-    background: #ef4444; /* Red */
+/* -----------------------------------------------------------
+   RESPONSIVE
+------------------------------------------------------------ */
+@media (max-width: 1100px) {
+    .help-text {
+        width: 280px;
+        left: 10px;
+    }
+    #chat-container {
+        bottom: 10px;
+    }
+    #search-container {
+        width: 804px;
+    }
+    .input {
+        width: 270px;
+        font-size: 17px;
+    }
+}
+}
+/* -----------------------------------------------------------
+   FIX: только левая (input) точка не должна закрывать текст
+   (сохраняем старый крутой вид, но делаем её "сквозь ноду")
+------------------------------------------------------------ */
+.node-connection-point.input {
+    /* Делаем фон прозрачным ТОЛЬКО у левой точки */
+    background: transparent !important;
+
+    /* Оставляем красивую обводку и свечение */
+    border: 3px solid rgba(110, 140, 255, 0.35) !important;
+    box-shadow:
+        0 0 10px rgba(110, 140, 255, 0.4),
+        inset 0 0 8px rgba(110, 140, 255, 0.15);
+
+    /* Критически важно — ставим ниже текста ноды */
+    z-index: 5 !important;
 }
 
-.node:hover .resend-btn,
-.node:hover .delete-btn {
-    opacity: 1;
+.node-connection-point.input:hover {
+    border-color: var(--accent3) !important;
+    box-shadow:
+        0 0 14px rgba(126, 224, 255, 0.7),
+        inset 0 0 10px rgba(126, 224, 255, 0.25);
+    transform: scale(1.25);
 }
 
-.resend-btn:hover {
-    background: #2563eb;
+/* Правая (output) точка остаётся как была — с тёмным фоном (красиво!) */
+.node-connection-point.output {
+    background: #151a35 !important;
+    z-index: 15; /* выше ноды — как и было */
 }
 
-.delete-btn:hover {
-    background: #dc2626;
+/* При активном соединении — обе точки яркие */
+.node-connection-point.connecting {
+    background: rgba(46, 204, 113, 0.3) !important;
+    border-color: #2ecc71 !important;
+    box-shadow: 0 0 16px rgba(46, 204, 113, 0.8) !important;
 }
-#file-input {
-    /* Прячем надоедливый текст "No file chosen", который нельзя стилизовать */
-    font-size: 0;
+/* -----------------------------------------------------------
+   PERFECT FIX: левая точка подключения (input) —
+   маленькая, красивая, НЕ перекрывает текст
+------------------------------------------------------------ */
+.node-connection-point.input {
+    /* Делаем её маленькой и аккуратной */
+    width: 13px !important;
+    height: 13px !important;
+    left: -10px !important;           /* чуть ближе к ноде */
+    top: 50% !important;
+    transform: translateY(-50%);
 
-    /* Убедимся, что он не занимает лишнего места */
-    padding: 0;
-    border: none;
+    /* Полностью прозрачный фон + только обводка */
+    background: transparent !important;
+    border: 2.5px solid rgba(110, 140, 255, 0.5) !important;
 
-    /* Выравниваем по центру с другими элементами в #chat-container */
-    align-self: center;
+    /* Лёгкое внутреннее свечение + внешний glow */
+    box-shadow:
+        0 0 8px rgba(110, 140, 255, 0.4),
+        inset 0 0 6px rgba(110, 140, 255, 0.2);
+
+    /* Самое важное — ниже текста */
+    z-index: 8 !important;
+
+    transition: all 0.2s ease;
 }
 
-/* Теперь мы стилизуем саму кнопку "Choose File" (или "Обзор..."),
-  которая находится ВНУТРИ инпута.
-*/
-#file-input::file-selector-button {
-    /* Копируем стили из вашей кнопки #send-btn */
-    padding: 12px 24px;
-    background: #718096; /* Серый, чтобы отличаться от "Send" */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px; /* Возвращаем размер шрифта (был 0 у родителя) */
-    font-weight: 600;
-    transition: all 0.2s;
+/* Hover — становится ярче и больше */
+.node-connection-point.input:hover {
+    border-color: var(--accent3) !important;
+    box-shadow:
+        0 0 14px rgba(126, 224, 255, 0.8),
+        inset 0 0 8px rgba(126, 224, 255, 0.4);
+    transform: translateY(-50%) scale(1.4);
 }
 
-/* Добавляем эффект при наведении */
-#file-input::file-selector-button:hover {
-    background: #4a5568; /* Темно-серый */
-    transform: translateY(-1px);
+/* Когда начинаем тянуть линию — зелёная пульсация */
+.node-connection-point.input.connecting {
+    border-color: #2ecc71 !important;
+    background: rgba(46, 204, 113, 0.25) !important;
+    box-shadow:
+        0 0 16px rgba(46, 204, 113, 0.8),
+        inset 0 0 10px rgba(46, 204, 113, 0.3) !important;
+    animation: pulse 1.2s infinite;
 }

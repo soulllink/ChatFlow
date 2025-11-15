@@ -5,110 +5,44 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Flowchart AI</title>
         <link rel="stylesheet" href="/src/styles.css" />
-        <!-- Favicon fix -->
         <link rel="icon" href="data:," />
     </head>
+
     <body>
+        <!-- Global starfield background -->
+        <div class="galaxy"></div>
+
         <!-- Canvas Container -->
         <div id="canvas-container">
             <svg id="flowchart-canvas"></svg>
             <div id="content"></div>
         </div>
 
-        <!-- Help Text + Settings -->
+        <!-- Help Panel + Settings -->
         <div class="help-text">
             <strong>Flowchart AI</strong><br />
-            • Enter a prompt below to start a new chain.<br />
-            • Select a node, then send a message to continue the flow.<br />
-            • Rewiring nodes updates context.<br />
-            • Drag background to pan.<br /><br />
-            • Double-click node to zoom into it.<br /><br />
 
-            <strong>Put your API key here:</strong>
-            <i
-                >from
-                <a href="https://aistudio.google.com/api-keys" target="_blank"
-                    >Google AI Studio</a
-                ></i
-            >
-
-            <label
-                for="ollama-base-url-input"
-                style="
-                    font-size: 12px;
-                    margin-top: 8px;
-                    display: block;
-                    color: #333;
-                "
+            <label for="ollama-base-url-input" class="help-label"
                 >Ollama Base URL:</label
             >
             <input
                 type="text"
                 id="ollama-base-url-input"
                 placeholder="http://localhost:11434/v1"
-                style="
-                    width: 100%;
-                    padding: 6px 8px;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                    font-size: 13px;
-                    margin-top: 4px;
-                "
+                class="help-input"
             />
 
-            <!-- Model Selector -->
-            <div style="margin-top: 8px">
-                <label
-                    for="model-select"
-                    style="font-size: 13px; display: block; margin-bottom: 4px"
-                >
-                    <strong>Model:</strong>
-                </label>
-                <label
-                    for="model-input"
-                    style="
-                        font-size: 12px;
-                        margin-top: 8px;
-                        display: block;
-                        color: #333;
-                    "
-                    >Ollama Model:</label
-                >
-                <input
-                    type="text"
-                    id="model-input"
-                    placeholder="e.g., llama3, llava"
-                    style="
-                        width: 100%;
-                        padding: 6px 8px;
-                        border: 1px solid #ccc;
-                        border-radius: 4px;
-                        font-size: 13px;
-                        margin-top: 4px;
-                    "
-                />
-            </div>
+            <label for="model-input" class="help-label">Ollama Model:</label>
+            <input
+                type="text"
+                id="model-input"
+                placeholder="e.g. llama3, gemma2, phi3"
+                class="help-input"
+            />
 
-            <i style="font-size: 11px; display: block; margin-top: 8px">
-                Made by Ivan Bussalayev @i.bussalayev for questions.
-            </i>
-
-            <!-- Save / Load Buttons -->
-            <div style="margin-top: 8px; display: flex; gap: 8px">
-                <button
-                    id="save-graph-btn"
-                    class="btn"
-                    style="font-size: 13px; padding: 6px 12px"
-                >
-                    Save graph
-                </button>
-                <button
-                    id="load-graph-btn"
-                    class="btn"
-                    style="font-size: 13px; padding: 6px 12px"
-                >
-                    Load graph
-                </button>
+            <div class="save-load">
+                <button id="save-graph-btn" class="btn">Save graph</button>
+                <button id="load-graph-btn" class="btn">Load graph</button>
                 <input
                     type="file"
                     id="load-file-input"
@@ -116,17 +50,59 @@
                     style="display: none"
                 />
             </div>
+
+            <i class="made-by">Made with love by Ivan Bue</i>
         </div>
 
-        <!-- Chat Input -->
+        <!-- COSMIC CHAT INPUT (Uiverse-style) — теперь без лишних кнопок -->
         <div id="chat-container">
-            <input
-                type="text"
-                id="chat-input"
-                placeholder="Type your message to the AI..."
-            />
-            <input type="file" id="file-input" />
-            <button id="send-btn">Send</button>
+            <div id="search-container">
+                <div class="nebula"></div>
+                <div class="starfield"></div>
+                <div class="cosmic-dust"></div>
+                <div class="cosmic-dust"></div>
+                <div class="cosmic-dust"></div>
+                <div class="stardust"></div>
+                <div class="cosmic-ring"></div>
+
+                <div id="main">
+                    <input
+                        class="input input-field"
+                        id="chat-input"
+                        type="text"
+                        placeholder="Explore the cosmos..."
+                        autocomplete="off"
+                    />
+
+                    <!--<div id="input-mask"></div>-->
+                    <!--<div id="cosmic-glow"></div>-->
+                    <div class="wormhole-border"></div>
+
+                    <!-- Wormhole — это теперь КНОПКА ОТПРАВКИ -->
+                    <div id="wormhole-icon" title="Send message">
+                        <svg
+                            stroke-linejoin="round"
+                            stroke-linecap="round"
+                            stroke-width="2"
+                            stroke="#a9c7ff"
+                            fill="none"
+                            height="24"
+                            width="24"
+                            viewBox="0 0 24 24"
+                        >
+                            <circle r="10" cy="12" cx="12"></circle>
+                            <path
+                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                            ></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Скрытые элементы (для логики) -->
+            <input type="file" id="file-input" style="display: none" />
+            <button id="send-btn" style="display: none">Send</button>
         </div>
 
         <!-- Node Edit Modal -->
@@ -134,7 +110,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title">Edit Node</h3>
-                    <button class="close-btn">x</button>
+                    <button class="close-btn">×</button>
                 </div>
                 <div class="form-group">
                     <label for="node-title">Title</label>
@@ -160,12 +136,12 @@
             </div>
         </div>
 
-        <!-- Zoom Modal -->
+        <!-- Zoom / View Node Modal -->
         <div id="zoom-modal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 id="zoom-title" class="modal-title"></h3>
-                    <button class="close-btn">x</button>
+                    <button class="close-btn">×</button>
                 </div>
                 <div
                     id="zoom-body"
@@ -174,7 +150,6 @@
             </div>
         </div>
 
-        <!-- App Entry Point -->
         <script type="module" src="/src/app.js"></script>
     </body>
 </html>

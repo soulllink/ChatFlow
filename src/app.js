@@ -248,6 +248,18 @@ saveNodeBtn.addEventListener("click", function () {
 // ────── GLOBAL EVENT LISTENERS (без изменений) ───────
 // ... (весь оставшийся код в app.js остается без изменений)
 // ...
+// Делаем wormhole-кнопку отправки
+document.getElementById("wormhole-icon").addEventListener("click", () => {
+  document.getElementById("send-btn").click();
+});
+
+// Опционально: отправка по Enter
+document.getElementById("chat-input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    document.getElementById("send-btn").click();
+  }
+});
 cancelNodeBtn.addEventListener("click", function () {
   nodeModal.style.display = "none";
 });
