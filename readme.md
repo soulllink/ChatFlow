@@ -7,11 +7,13 @@ The interface is designed to provide a more intuitive way to interact with the c
 
 Key features include:
 
-Resending inputs.
+* Resending inputs and modify both for LLM and Users.
 
-Reviewing and editing nodes (both the LLM's responses and the user's inputs) to merge information and generate different responses.
+* Reviewing and editing nodes to merge information and generate different responses.
 
-The ability to save the graph as JSON and load it to continue your workflow.
+* The ability to save the graph as JSON and load it to continue your workflow.
+
+* You can compare different models side by side.
 
 ## Usage
 
