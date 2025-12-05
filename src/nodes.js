@@ -6,6 +6,14 @@ import { parseMarkdown, getChatContext, redrawConnections } from "./utility.js";
 import { callOllamaApi } from "./chatllm.js"; // ИЗМЕНЕНО
 
 // ────── NODE CREATION ─────────────────────────────────────────────────
+/**
+ * Creates a new node.
+ * @param {number} x The x-coordinate of the node.
+ * @param {number} y The y-coordinate of the node.
+ * @param {string} title The title of the node.
+ * @param {string} body The body of the node.
+ * @returns {Object} The new node.
+ */
 function createNode(x, y, title = "New Node", body = "") {
   // ... (код без изменений)
   var nodeId = "node-" + app.nodeIdCounter++;
@@ -69,6 +77,11 @@ function createNode(x, y, title = "New Node", body = "") {
 }
 
 // ────── RESEND HANDLER (ИЗМЕНЕНО) ─────────────────────
+/**
+ * Handles the resend button click event.
+ * @param {MouseEvent} e The click event.
+ * @returns {void}
+ */
 function handleResend(e) {
   e.stopPropagation();
   var el = e.currentTarget.parentNode;
@@ -102,6 +115,11 @@ function handleResend(e) {
 // ────── CONNECTION DRAWING (без изменений) ────────────────────────────
 // ... (остальной код в nodes.js остается без изменений)
 // ...
+/**
+ * Draws a connection between two nodes.
+ * @param {Object} c The connection to draw.
+ * @returns {void}
+ */
 function drawConnection(c) {
   var s = document.getElementById(c.start);
   var e = document.getElementById(c.end);
@@ -155,6 +173,12 @@ function drawConnection(c) {
 }
 
 // ────── CONNECTION CREATION ───────────────────────────────────────────
+/**
+ * Creates a connection between two nodes.
+ * @param {string} startId The ID of the start node.
+ * @param {string} endId The ID of the end node.
+ * @returns {Object|null} The new connection or null if it already exists.
+ */
 function createConnection(startId, endId) {
   if (
     app.connections.some(function (c) {
@@ -173,6 +197,11 @@ function createConnection(startId, endId) {
 }
 
 // ────── DELETE HELPERS ────────────────────────────────────────────────
+/**
+ * Deletes a connection.
+ * @param {string} id The ID of the connection to delete.
+ * @returns {void}
+ */
 function deleteConnection(id) {
   app.connections = app.connections.filter(function (c) {
     return c.id !== id;
@@ -183,6 +212,11 @@ function deleteConnection(id) {
   redrawConnections();
 }
 
+/**
+ * Deletes a node and its connections.
+ * @param {string} id The ID of the node to delete.
+ * @returns {void}
+ */
 function deleteNode(id) {
   // Находим все ID соединений, которые нужно удалить
   var connectionsToUpdate = app.connections.filter(function (c) {
@@ -214,6 +248,11 @@ function deleteNode(id) {
 }
 
 // ────── EVENT HANDLERS ────────────────────────────────────────────────
+/**
+ * Handles the mouse down event on a node.
+ * @param {MouseEvent} e The mouse down event.
+ * @returns {void}
+ */
 function handleNodeMouseDown(e) {
   if (e.button !== 0) return;
   e.preventDefault();
@@ -224,6 +263,11 @@ function handleNodeMouseDown(e) {
   app.isDragging = true;
   el.classList.add("dragging");
 }
+/**
+ * Handles the double click event on a node.
+ * @param {MouseEvent} e The double click event.
+ * @returns {void}
+ */
 function handleNodeDoubleClick(e) {
   var el = e.currentTarget;
   var node = app.nodes.find(function (n) {
@@ -234,6 +278,11 @@ function handleNodeDoubleClick(e) {
   document.getElementById("zoom-body").innerHTML = parseMarkdown(node.body);
   document.getElementById("zoom-modal").style.display = "flex";
 }
+/**
+ * Handles the right click event on a node.
+ * @param {MouseEvent} e The right click event.
+ * @returns {void}
+ */
 function handleNodeRightClick(e) {
   e.preventDefault();
   var el = e.currentTarget;
@@ -246,6 +295,11 @@ function handleNodeRightClick(e) {
   document.getElementById("node-body").value = node.body;
   document.getElementById("node-modal").style.display = "flex";
 }
+/**
+ * Handles the click event on a node.
+ * @param {MouseEvent} e The click event.
+ * @returns {void}
+ */
 function handleNodeClick(e) {
   e.stopPropagation();
   var el = e.currentTarget;
@@ -255,6 +309,11 @@ function handleNodeClick(e) {
   app.selectedNode = id;
   el.classList.add("selected");
 }
+/**
+ * Handles the mouse down event on a connection point.
+ * @param {MouseEvent} e The mouse down event.
+ * @returns {void}
+ */
 function handleConnectionPointMouseDown(e) {
   e.stopPropagation();
   e.preventDefault();
