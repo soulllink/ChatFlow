@@ -1,5 +1,10 @@
 import { app } from "./state.js";
 
+/**
+ * Parses markdown text and returns HTML.
+ * @param {string} text The markdown text to parse.
+ * @returns {string} The parsed HTML.
+ */
 function parseMarkdown(text) {
   var imageRegex =
     /!\[(.*?)\]\((https?:\/\/[^\s]+\.(?:png|jpg|jpeg|gif|webp)(\?[^\s]*)?)\)/gi;
@@ -68,6 +73,11 @@ function parseMarkdown(text) {
   return text;
 }
 
+/**
+ * Gets the chat context for a given node.
+ * @param {string} id The ID of the node.
+ * @returns {Array<Object>} The chat context.
+ */
 function getChatContext(id) {
   var msgs = [];
   var seen = new Set();
@@ -90,6 +100,10 @@ function getChatContext(id) {
   return msgs;
 }
 
+/**
+ * Redraws all connections between nodes.
+ * @returns {void}
+ */
 function redrawConnections() {
   // Удаляем старые
   document
@@ -153,6 +167,11 @@ function redrawConnections() {
   });
 }
 
+/**
+ * Converts a file to a generative part.
+ * @param {File} file The file to convert.
+ * @returns {Promise<Object>} A promise that resolves with the generative part.
+ */
 function fileToGenerativePart(file) {
   return new Promise(function (resolve, reject) {
     var reader = new FileReader();

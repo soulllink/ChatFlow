@@ -41,6 +41,11 @@ var loadFileInput = document.getElementById("load-file-input");
 var fileInput = document.getElementById("file-input");
 
 // ────── UI SYNC (ИЗМЕНЕНО) ────────────────────────────────────────────
+/**
+ * Handles the change event on the base URL input.
+ * @param {Event} e The change event.
+ * @returns {void}
+ */
 baseUrlInput.value = getDefaultBaseUrl();
 baseUrlInput.addEventListener("change", function (e) {
   var url = e.target.value.trim();
@@ -48,6 +53,11 @@ baseUrlInput.addEventListener("change", function (e) {
   console.log("Ollama Base URL set.");
 });
 
+/**
+ * Handles the change event on the model input.
+ * @param {Event} e The change event.
+ * @returns {void}
+ */
 modelInput.value = getDefaultModel();
 modelInput.addEventListener("change", function (e) {
   updateModel(e.target.value);
@@ -55,6 +65,10 @@ modelInput.addEventListener("change", function (e) {
 });
 
 // ────── SAVE / LOAD GRAPH (без изменений) ────────────────────────────────
+/**
+ * Handles the click event on the save graph button.
+ * @returns {void}
+ */
 saveGraphBtn.addEventListener("click", function () {
   // ... (код без изменений)
   var data = {
@@ -84,10 +98,19 @@ saveGraphBtn.addEventListener("click", function () {
   URL.revokeObjectURL(url);
 });
 
+/**
+ * Handles the click event on the load graph button.
+ * @returns {void}
+ */
 loadGraphBtn.addEventListener("click", function () {
   // ... (код без изменений)
   loadFileInput.click();
 });
+/**
+ * Handles the change event on the load file input.
+ * @param {Event} e The change event.
+ * @returns {void}
+ */
 loadFileInput.addEventListener("change", function (e) {
   // ... (код без изменений)
   var file = e.target.files[0];
@@ -129,6 +152,12 @@ loadFileInput.addEventListener("change", function (e) {
 });
 
 // ────── CHAT HANDLER (ИЗМЕНЕНО) ─────────────────────────────
+/**
+ * Handles sending a chat message.
+ * This function retrieves the user's input, sends it to the Ollama API,
+ * and displays the response in a new node.
+ * @returns {void}
+ */
 async function handleSendChat() {
   var prompt = chatInput.value.trim();
   var file = fileInput.files[0];
@@ -251,7 +280,16 @@ async function handleSendChat() {
   redrawConnections();
 }
 
+/**
+ * Handles the click event on the send button.
+ * @returns {void}
+ */
 sendBtn.addEventListener("click", handleSendChat);
+/**
+ * Handles the keydown event on the chat input.
+ * @param {KeyboardEvent} e The keydown event.
+ * @returns {void}
+ */
 chatInput.addEventListener("keydown", function (e) {
   if (e.key === "Enter" && !e.shiftKey) {
     e.preventDefault();
@@ -260,6 +298,10 @@ chatInput.addEventListener("keydown", function (e) {
 });
 
 // ────── MODAL HANDLERS (без изменений) ────────────────────────────────
+/**
+ * Handles the click event on the save node button.
+ * @returns {void}
+ */
 saveNodeBtn.addEventListener("click", function () {
   // ... (код без изменений)
   var title = nodeTitleInput.value.trim() || "Untitled Node";
@@ -282,22 +324,37 @@ saveNodeBtn.addEventListener("click", function () {
 // ────── GLOBAL EVENT LISTENERS (без изменений) ───────
 // ... (весь оставшийся код в app.js остается без изменений)
 // ...
-// Делаем wormhole-кнопку отправки
+/**
+ * Handles the click event on the wormhole icon.
+ * @returns {void}
+ */
 document.getElementById("wormhole-icon").addEventListener("click", () => {
   document.getElementById("send-btn").click();
 });
 
-// Опционально: отправка по Enter
+/**
+ * Handles the keydown event on the chat input.
+ * @param {KeyboardEvent} e The keydown event.
+ * @returns {void}
+ */
 document.getElementById("chat-input").addEventListener("keydown", (e) => {
   if (e.key === "Enter" && !e.shiftKey) {
     e.preventDefault();
     document.getElementById("send-btn").click();
   }
 });
+/**
+ * Handles the click event on the cancel node button.
+ * @returns {void}
+ */
 cancelNodeBtn.addEventListener("click", function () {
   nodeModal.style.display = "none";
 });
 
+/**
+ * Handles the click event on the close buttons.
+ * @returns {void}
+ */
 document.querySelectorAll(".close-btn").forEach(function (btn) {
   btn.addEventListener("click", function () {
     nodeModal.style.display = "none";
@@ -305,6 +362,11 @@ document.querySelectorAll(".close-btn").forEach(function (btn) {
   });
 });
 
+/**
+ * Handles the click event on the window.
+ * @param {MouseEvent} e The click event.
+ * @returns {void}
+ */
 window.addEventListener("click", function (e) {
   if (e.target === nodeModal) {
     nodeModal.style.display = "none";
@@ -318,7 +380,9 @@ window.addEventListener("click", function (e) {
 // ... (Все глобальные слушатели остаются как есть)
 
 /**
- * Обработчик mousedown на канвасе для панорамирования
+ * Handles the mouse down event on the canvas for panning.
+ * @param {MouseEvent} e The mouse down event.
+ * @returns {void}
  */
 function handleCanvasMouseDown(e) {
   if (e.button !== 0) return;
@@ -346,7 +410,9 @@ function handleCanvasMouseDown(e) {
 }
 
 /**
- * Глобальный обработчик mousemove для перетаскивания, панорамирования и соединений
+ * Handles the global mouse move event for dragging nodes, panning the canvas, and creating connections.
+ * @param {MouseEvent} e The mouse move event.
+ * @returns {void}
  */
 document.addEventListener("mousemove", function (e) {
   var containerRect = canvasContainer.getBoundingClientRect();
@@ -410,7 +476,9 @@ document.addEventListener("mousemove", function (e) {
 });
 
 /**
- * Глобальный обработчик mouseup для завершения всех действий
+ * Handles the global mouse up event to complete actions like dragging, connecting, and panning.
+ * @param {MouseEvent} e The mouse up event.
+ * @returns {void}
  */
 document.addEventListener("mouseup", function (e) {
   if (app.isDragging && app.dragNode) {
@@ -455,7 +523,9 @@ document.addEventListener("mouseup", function (e) {
 });
 
 /**
- * Глобальный обработчик keydown для Delete и Escape
+ * Handles the global keydown event for shortcuts like deleting nodes and canceling actions.
+ * @param {KeyboardEvent} e The keydown event.
+ * @returns {void}
  */
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
@@ -501,7 +571,9 @@ document.addEventListener("keydown", function (e) {
 });
 
 /**
- * Обработчик клика по канвасу для снятия выделения
+ * Handles the click event on the canvas to deselect nodes.
+ * @param {MouseEvent} e The click event.
+ * @returns {void}
  */
 canvasContainer.addEventListener("click", function (e) {
   var target = e.target;
@@ -517,7 +589,10 @@ canvasContainer.addEventListener("click", function (e) {
 // Добавляем слушатель mousedown для панорамирования
 canvasContainer.addEventListener("mousedown", handleCanvasMouseDown);
 
-// Устанавливаем canvasRect при загрузке
+/**
+ * Sets the canvasRect on window load.
+ * @returns {void}
+ */
 window.addEventListener("load", function () {
   app.canvasRect = canvasContainer.getBoundingClientRect();
 });

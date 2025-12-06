@@ -9,6 +9,10 @@ let CURRENT_MODEL = "granite4:tiny-h"; // Установите модель по
 let ollamaClient = null;
 
 // ────── ИНИЦИАЛИЗАЦИЯ КЛИЕНТА ─────────────────────────────────────────
+/**
+ * Gets the Ollama client, creating it if it doesn't exist.
+ * @returns {OpenAI|null} The Ollama client or null if the base URL is not set.
+ */
 function getClient() {
   // Пересоздаем клиент, только если URL изменился
   if (!ollamaClient || ollamaClient.baseURL !== OLLAMA_BASE_URL) {
@@ -32,6 +36,13 @@ function getClient() {
 }
 
 // ────── ОСНОВНАЯ ФУНКЦИЯ ──────────────────────────────────────────────
+/**
+ * Calls the Ollama API with the given history, prompt, and file.
+ * @param {Array<Object>} history The chat history.
+ * @param {string} prompt The user's prompt.
+ * @param {Object} filePart The file to send to the API.
+ * @returns {Promise<string>} The response from the API.
+ */
 async function callOllamaApi(history = [], prompt, filePart = null) {
   var ai = getClient();
   if (!ai) return "Error: Установите действующий Ollama Base URL";
@@ -109,21 +120,39 @@ async function callOllamaApi(history = [], prompt, filePart = null) {
 }
 
 // ────── УПРАВЛЕНИЕ НАСТРОЙКАМИ ───────────────────────────────────
+/**
+ * Updates the Ollama base URL.
+ * @param {string} url The new base URL.
+ * @returns {void}
+ */
 function updateBaseUrl(url) {
   OLLAMA_BASE_URL = url.trim() || "http://localhost:11434/v1";
   ollamaClient = null; // Принудительная ре-инициализация
   console.log("Ollama Base URL обновлён:", OLLAMA_BASE_URL);
 }
 
+/**
+ * Updates the Ollama model.
+ * @param {string} model The new model.
+ * @returns {void}
+ */
 function updateModel(model) {
   CURRENT_MODEL = model.trim() || "llama3"; // Используем llama3 по умолчанию
   console.log("Модель изменена на:", model);
 }
 
+/**
+ * Gets the default Ollama model.
+ * @returns {string} The default model.
+ */
 function getDefaultModel() {
   return CURRENT_MODEL;
 }
 
+/**
+ * Gets the default Ollama base URL.
+ * @returns {string} The default base URL.
+ */
 function getDefaultBaseUrl() {
   return OLLAMA_BASE_URL;
 }
